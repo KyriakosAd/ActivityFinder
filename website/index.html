@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Activity Finder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial;
+}
+
+.bg-home {
+  background-image: url("https://i.imgur.com/mTMYOwa.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-busywork {
+  background-image: url("https://i.imgur.com/heTkiMN.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-charity {
+  background-image: url("https://i.imgur.com/JH84yQk.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-cooking {
+  background-image: url("https://i.imgur.com/QMapQ9s.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-diy {
+  background-image: url("https://i.imgur.com/LrSK78v.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-education {
+  background-image: url("https://i.imgur.com/WEpjjqt.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-music {
+  background-image: url("https://i.imgur.com/PP4SeEB.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-recreational {
+  background-image: url("https://i.imgur.com/Mb4JmWP.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-relaxation {
+  background-image: url("https://i.imgur.com/O28VUMZ.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-social {
+  background-image: url("https://i.imgur.com/hyyMpGH.jpg");
+  height: 100%;
+  overflow: hidden;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.row {  
+  display: flex;
+}
+
+.main{
+  width: 500px;
+  flex: 0%;
+}
+
+.side{
+  padding: 170px 0px;
+  flex: 0%;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  height: 52px;
+}
+
+.navbarextra  {
+  font-size:20px;
+  margin:0;
+  text-align:center;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 20px;
+  border: none;
+  outline: none;
+  color: white;
+  width: 155px;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: teal;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.submitbtn{
+  background-color: #337c7a;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 20px;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 9px #999;
+}
+
+.submitbtn:hover {background-color: #2e5150}
+
+.submitbtn:active {
+  background-color: #2e5150;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.slidecontainer {
+  padding: 0px 40px;
+  width: 450px;
+}
+
+.textcontent {
+  padding: 0px 40px;
+  width: 500px;
+}
+
+.tablink {
+  background-color: #333;
+  color: white;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 155px; 
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.tablink:hover{
+  background-color: teal;
+}
+
+.tabcontent {
+  color: black;
+  height: 100%;
+}
+
+.slider {
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #333;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #999;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #999;
+  cursor: pointer;
+}
+
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <button class="tablink" onclick="openPage('Home', this)"id="defaultOpen">
+	<div class="navbarextra">
+      <em class="fas fa-home"></em>
+	  Home</p>
+	</div>
+	  </button>
+  <div class="dropdown">
+    <button class="dropbtn">Categories
+      <em class="fas fa-caret-down"></em>
+    </button>
+    <div class="dropdown-content">
+	  <button class="tablink" onclick="openPage('Busywork', this)">
+	    <em class="far fa-clock"></em>
+	    Busywork</button><br>
+	  <button class="tablink" onclick="openPage('Charity', this)">
+	    <em class="fas fa-hand-holding-heart"></em>
+	    Charity</button><br>
+	  <button class="tablink" onclick="openPage('Cooking', this)">
+	    <em class="fas fa-utensils"></em>
+	    Cooking</button><br>
+	  <button class="tablink" onclick="openPage('DIY', this)">
+	    <em class="fas fa-wrench"></em>
+	    DIY</button><br>
+	  <button class="tablink" onclick="openPage('Education', this)">
+	    <em class="fas fa-book"></em>
+	    Education</button><br>
+	  <button class="tablink" onclick="openPage('Music', this)">
+	    <em class="fas fa-music"></em>
+	    Music</button><br>
+	  <button class="tablink" onclick="openPage('Recreational', this)">
+	    <em class="fas fa-biking"></em>
+	    Recreational</button><br>
+	  <button class="tablink" onclick="openPage('Relaxation', this)">
+	    <em class="fas fa-mug-hot"></em>
+	    Relaxation</button><br>
+	  <button class="tablink" onclick="openPage('Social', this)">
+	    <em class="far fa-comment"></em>
+	    Social</button><br>
+    </div>
+  </div> 
+  <div style="float:right">
+    <button class="tablink" onclick="openPage('About', this)"id="defaultOpen">
+	    <div class="navbarextra">
+        <em class="fas fa-info-circle"></em>
+	    About
+	  </div>
+	</button>
+  </div>
+</div>
+
+<div id="Home" class="tabcontent">
+  <div class="bg-home">
+    <div style="padding: 20px 80px; font-family: Georgia;">
+    <h1>Home</h1>
+	<br>
+	<div style="font-size:21px; line-height: 19px;">
+    <p>This website will help you find things to do when you are bored!</p>
+	<p>There are fields like activity type, the cost of the activity and more that help you narrow down your results.</p>
+	<br>
+	<p>You can start by choosing the type of activity from the dropdown menu called <em>Categories.</em></p>
+	</div>
+	</div>
+  </div>
+</div>
+
+<div id="Busywork" class="tabcontent">
+  <div class="bg-busywork">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Busywork</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeBusywork-A">
+      <h4 style="text-align:center">Value: <span id="demoBusywork-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeBusywork-B">
+      <h4 style="text-align:center">Value: <span id="demoBusywork-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverBusywork" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageBusywork" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Charity" class="tabcontent">
+  <div class="bg-charity">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Charity</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeCharity-A">
+      <h4 style="text-align:center">Value: <span id="demoCharity-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeCharity-B">
+      <h4 style="text-align:center">Value: <span id="demoCharity-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverCharity" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageCharity" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Cooking" class="tabcontent">
+  <div class="bg-cooking">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Cooking</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeCooking-A">
+      <h4 style="text-align:center">Value: <span id="demoCooking-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeCooking-B">
+      <h4 style="text-align:center">Value: <span id="demoCooking-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverCooking" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageCooking" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="DIY" class="tabcontent">
+  <div class="bg-diy">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>DIY</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeDIY-A">
+      <h4 style="text-align:center">Value: <span id="demoDIY-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeDIY-B">
+      <h4 style="text-align:center">Value: <span id="demoDIY-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverDIY" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageDIY" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Education" class="tabcontent">
+  <div class="bg-education">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Education</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeEducation-A">
+      <h4 style="text-align:center">Value: <span id="demoEducation-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeEducation-B">
+      <h4 style="text-align:center">Value: <span id="demoEducation-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverEducation" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageEducation" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Music" class="tabcontent">
+  <div class="bg-music">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Music</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeMusic-A">
+      <h4 style="text-align:center">Value: <span id="demoMusic-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeMusic-B">
+      <h4 style="text-align:center">Value: <span id="demoMusic-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverMusic" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageMusic" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+
+<div id="Recreational" class="tabcontent">
+  <div class="bg-recreational">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Recreational</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeRecreational-A">
+      <h4 style="text-align:center">Value: <span id="demoRecreational-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeRecreational-B">
+      <h4 style="text-align:center">Value: <span id="demoRecreational-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverRecreational" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageRecreational" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Relaxation" class="tabcontent">
+  <div class="bg-relaxation">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Relaxation</h1>
+    </div>
+
+	<div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeRelaxation-A">
+      <h4 style="text-align:center">Value: <span id="demoRelaxation-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeRelaxation-B">
+      <h4 style="text-align:center">Value: <span id="demoRelaxation-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverRelaxation" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageRelaxation" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="Social" class="tabcontent">
+  <div class="bg-social">
+   <div class="row">
+   <div class="main">
+    <div style="padding: 20px 40px; font-family: Georgia;">
+    <h1>Social</h1>
+    </div>
+
+    <div class="textcontent">
+      <h2>Max Accessibility</h2>
+	  <h4>(A factor describing how possible an event is to do with zero being the most accessible)</h4>
+	</div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeSocial-A">
+      <h4 style="text-align:center">Value: <span id="demoSocial-A"></span></h4>
+	</div>
+	  <div class="textcontent">
+	    <h2>Max Price</h2>
+        <h4>(A factor describing the cost of the event with zero being free)</h4>
+      </div>
+	<div class="slidecontainer">
+      <input type="range" min="0" max="1" value="0.5" step="0.1" class="slider" id="rangeSocial-B">
+      <h4 style="text-align:center">Value: <span id="demoSocial-B"></span></h4>
+	</div>
+	<div style="padding: 20px 300px">
+      <input type="button" id = "driverSocial" class="submitbtn" value="Submit"/>
+    </div>
+   </div>
+   <div class="side">
+   	<div id = "stageSocial" style = "background-color:#eee; padding:20px; opacity:0.8; width:500px; border:groove; font-size:20px; font-family: Georgia;">
+         Click on the button to proceed.
+    </div>
+   </div>
+   </div>
+  </div>
+</div>
+
+<div id="About" class="tabcontent">
+  <div class="bg-home">
+    <div style="padding: 20px 80px; font-family: Georgia;">
+      <h1>About</h1>
+	  <br>
+	  <div style="font-size:20px;">
+      <p><ul><li>This website uses a free and public API called <em>boredapi</em>.</li></ul></p>
+	  <p>You can find more about it <a href="https://www.boredapi.com/" target="_blank">here</a>.</p>
+	  <p><ul><li>The API Call is happening using JavaScript and specifically using a technique called AJAX.</li></ul></p>
+	  <p>AJAX is a new technique for creating better, faster, and more interactive web applications with the help of XML, HTML, CSS, and JavaScript.</p>
+	  <p><ul><li>All icons used are free from FontAwesome 5.9</li></ul></p>
+	  <p>You can find all of the free icons provided <a href="https://fontawesome.com/icons?d=gallery&m=free" target="_blank">here</a>.</p>
+	  </div>
+	</div>
+  </div>
+</div>
+
+<script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+document.getElementById("defaultOpen").click();
+
+var categories = ["Busywork", "Charity", "Cooking", "DIY", "Education", "Music", "Recreational", "Relaxation", "Social"];
+var j;
+
+for(j = 0; j < 9; j++){
+  document.getElementById("demo"+categories[j]+"-A").innerHTML = document.getElementById("range"+categories[j]+"-A").value;
+  document.getElementById("demo"+categories[j]+"-B").innerHTML = document.getElementById("range"+categories[j]+"-B").value;
+}
+
+var input = 8;
+function updateScroll(input){
+  if(input < 0){
+    return;
+  }
+  document.getElementById("range"+categories[input]+"-A").oninput = function() {
+    document.getElementById("demo"+categories[input]+"-A").innerHTML = this.value;
+  };
+  document.getElementById("range"+categories[input]+"-B").oninput = function() {
+    document.getElementById("demo"+categories[input]+"-B").innerHTML = this.value;
+  };
+  return updateScroll(input-1);
+}
+
+updateScroll(input);
+
+</script>
+
+<script type = "text/javascript" 
+	src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+
+<script type = "text/javascript" language = "javascript">
+
+	$(document).ready(function() {
+        $("#driverBusywork").click(function(event){
+			var valueBusyworkA = $("#rangeBusywork-A").val();
+			var valueBusyworkB = $("#rangeBusywork-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=busywork&maxprice='+valueBusyworkB+'&maxaccessibility='+valueBusyworkA+'', function(jd) {
+                $('#stageBusywork').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageBusywork').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageBusywork').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageBusywork').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverCharity").click(function(event){
+			var valueCharityA = $("#rangeCharity-A").val();
+			var valueCharityB = $("#rangeCharity-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=charity&maxprice='+valueCharityB+'&maxaccessibility='+valueCharityA+'', function(jd) {
+                $('#stageCharity').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageCharity').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageCharity').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageCharity').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverCooking").click(function(event){
+			var valueCookingA = $("#rangeCooking-A").val();
+			var valueCookingB = $("#rangeCooking-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=cooking&maxprice='+valueCookingB+'&maxaccessibility='+valueCookingA+'', function(jd) {
+                $('#stageCooking').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageCooking').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageCooking').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageCooking').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverDIY").click(function(event){
+			var valueDIYA = $("#rangeDIY-A").val();
+			var valueDIYB = $("#rangeDIY-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=diy&maxprice='+valueDIYB+'&maxaccessibility='+valueDIYA+'', function(jd) {
+                $('#stageDIY').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageDIY').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageDIY').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageDIY').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverEducation").click(function(event){
+			var valueEducationA = $("#rangeEducation-A").val();
+			var valueEducationB = $("#rangeEducation-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=education&maxprice='+valueEducationB+'&maxaccessibility='+valueEducationA+'', function(jd) {
+                $('#stageEducation').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageEducation').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageEducation').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageEducation').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverMusic").click(function(event){
+			var valueMusicA = $("#rangeMusic-A").val();
+			var valueMusicB = $("#rangeMusic-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=music&maxprice='+valueMusicB+'&maxaccessibility='+valueMusicA+'', function(jd) {
+                $('#stageMusic').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageMusic').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageMusic').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageMusic').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverRecreational").click(function(event){
+			var valueRecreationalA = $("#rangeRecreational-A").val();
+			var valueRecreationalB = $("#rangeRecreational-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=recreational&maxprice='+valueRecreationalB+'&maxaccessibility='+valueRecreationalA+'', function(jd) {
+                $('#stageRecreational').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageRecreational').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageRecreational').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageRecreational').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverRelaxation").click(function(event){
+			var valueRelaxationA = $("#rangeRelaxation-A").val();
+			var valueRelaxationB = $("#rangeRelaxation-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=relaxation&maxprice='+valueRelaxationB+'&maxaccessibility='+valueRelaxationA+'', function(jd) {
+                $('#stageRelaxation').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageRelaxation').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageRelaxation').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageRelaxation').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+		$("#driverSocial").click(function(event){
+			var valueSocialA = $("#rangeSocial-A").val();
+			var valueSocialB = $("#rangeSocial-B").val();
+            $.getJSON('http://www.boredapi.com/api/activity?type=social&maxprice='+valueSocialB+'&maxaccessibility='+valueSocialA+'', function(jd) {
+                $('#stageSocial').html('<p> Activity: ' + jd.activity + '</p>');
+				$('#stageSocial').append('<p> Type: ' + jd.type + '</p>');
+				$('#stageSocial').append('<p> Price: ' + jd.price + '</p>');
+				$('#stageSocial').append('<p> Accessibility: ' + jd.accessibility + '</p>');
+            });
+        });
+	});
+</script>
+</body>
+</html>
